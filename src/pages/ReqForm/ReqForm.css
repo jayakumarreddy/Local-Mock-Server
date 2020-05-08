@@ -1,0 +1,56 @@
+.sheet-inner {
+  padding: 20px;
+}
+
+.sheet-request {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sheet-inner-info {
+  font-style: italic;
+  font-size: 12px;
+  margin-left: 20px;
+  color: yellowgreen;
+}
+
+.sheet-request > div:first-child {
+  flex-basis: 15%;
+}
+
+.sheet-request > div:nth-child(2) {
+  flex-basis: 82%;
+}
+
+.sheet-response-code {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sheet-response-code input {
+  width: 100px;
+  margin-left: 20px;
+}
+
+.sheet-response-body {
+  height: 50%;
+}
+
+.sheet-response-body textarea {
+  margin-top: 10px;
+}
+
+.sheet-error {
+  color: #a04b56;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.sheet-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

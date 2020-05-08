@@ -1,0 +1,77 @@
+{
+  "status": "200",
+  "body": {
+    "firstName": "Jaya",
+    "lastName": "K",
+    "email": "jaya.kumar@veranahealth.com",
+    "phone": null,
+    "npi": "1710148028",
+    "username": "jaya.k",
+    "applications": [
+      {
+        "id": 1,
+        "name": "TC",
+        "displayName": "Verana Trial Connect",
+        "displayOrder": 1,
+        "url": "https://vtc-qa2.veranahealth.com",
+        "type": "EXTERNAL",
+        "roles": [
+          {
+            "id": 1,
+            "name": "provider",
+            "label": "Provider"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "PI",
+        "displayName": "Verana Practice Insights",
+        "displayOrder": 2,
+        "url": "https://vpi-qa2.veranahealth.com",
+        "type": "EXTERNAL",
+        "roles": [
+          {
+            "id": 18,
+            "name": "PI-Provider",
+            "label": "PI-Provider"
+          }
+        ]
+      }
+    ],
+    "specialty": null,
+    "isActive": true,
+    "siteDetails": [
+      {
+        "id": 23,
+        "name": "Practice Nikolai Steklov",
+        "practiceId": "Practice Nikolai Steklov",
+        "trials": [
+          {
+            "id": 1,
+            "name": "RHINE",
+            "patientsCount": 134,
+            "showAllPatients": null,
+            "providerIds": null
+          }
+        ]
+      }
+    ],
+    "userId": 22938,
+    "authProvider": {
+      "id": 1,
+      "name": "Verana Health",
+      "active": true
+    },
+    "factors": [],
+    "status": null,
+    "fellowship": {
+      "id": 15,
+      "name": "Other"
+    },
+    "subSpeciality": {
+      "id": 15,
+      "name": "Other"
+    }
+  }
+}

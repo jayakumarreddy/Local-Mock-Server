@@ -1,20 +1,47 @@
 {
   "name": "local-mock-server-electron",
-  "version": "0.1.0",
+  "description": "This is local-mock-server built with electron",
+  "version": "1.0.0",
+  "author": "Jaya Kumar Reddy Regalla",
+  "license": "MIT",
+  "build": {
+    "appId": "com.jay.localmockserver",
+    "productName": "Local Mock Server",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "public/appstore.png"
+    }
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "electron": "^8.2.0",
+    "electron-builder": "^22.4.1",
+    "wait-on": "^4.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
