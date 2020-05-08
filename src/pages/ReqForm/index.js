@@ -22,13 +22,18 @@ const ReqForm = ({
 
   const onButtonClick = () => {
     if (reqMethod && reqPath && resStatus && resBody) {
-      onsubmit({
-        reqMethod,
-        reqPath,
-        resStatus,
-        resBody
-      });
-      setFormError("");
+      try {
+        const JSONResBody = JSON.stringify(JSON.parse(resBody), null, 2);
+        onsubmit({
+          reqMethod,
+          reqPath,
+          resStatus,
+          resBody: JSONResBody
+        });
+        setFormError("");
+      } catch (err) {
+        setFormError("* Response Body JSON format not valid");
+      }
     } else {
       setFormError("* All Fields are mandatory");
     }
@@ -90,7 +95,7 @@ const ReqForm = ({
             rows={25}
             placeholder="Paste the response JSON Body here"
             onChange={e => {
-              setResBody(JSON.stringify(JSON.parse(e.target.value), null, 2));
+              setResBody(e.target.value);
             }}
             value={resBody}
           ></TextArea>
