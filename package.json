@@ -9,7 +9,7 @@
     "productName": "Local Mock Server",
     "mac": {
       "category": "public.app-category.utilities",
-      "icon": "public/appstore.png"
+      "icon": "public/AppIcon.png"
     }
   },
   "main": "public/electron.js",
@@ -39,7 +39,7 @@
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "release": "yarn react-build && electron-builder --publish=never",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },

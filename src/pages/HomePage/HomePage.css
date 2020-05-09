@@ -5,12 +5,21 @@
 }
 
 .left-wrapper {
-  flex-basis: 30%;
+  flex-basis: 40%;
   height: 100%;
 }
 
 .left-wrapper-inner {
   padding: 20px 10px 20px 20px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+}
+
+.header-title img {
+  margin-right: 10px;
 }
 
 .left-wrapper-mocks {
@@ -23,6 +32,16 @@
   margin: 7px 0px;
   font-size: 12px;
   cursor: pointer;
+  word-break: break-all;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-wrapper-mock img {
+  height: 12px;
+  width: 9px;
+  margin-left: 10px;
 }
 
 .left-wrapper-no-mock {
@@ -31,8 +50,8 @@
   font-size: 16px;
 }
 
-.left-wrapper-mock > span:last-child {
-  margin-left: 10px;
+.left-wrapper-mock > div span:last-child {
+  margin-left: 8px;
 }
 
 .left-wrapper-mock > span:first-child {
@@ -58,4 +77,9 @@
 .right-wrapper-inner {
   max-height: 100%;
   padding: 20px 20px 10px 20px;
+}
+
+.left-wrapper-button button {
+  margin-top: 30px;
+  width: 100%;
 }

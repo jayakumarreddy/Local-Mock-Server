@@ -1,9 +1,13 @@
 const electron = require("electron");
-require("./express");
 const path = require("path");
 const isDev = require("electron-is-dev");
+const { expressApp } = require("./express");
 
 const app = electron.app;
+const desktopPath = app.getPath("desktop");
+
+expressApp(desktopPath);
+
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
