@@ -11,9 +11,10 @@ Uses
 ## ScreenShots
 
  - Creating new Mock API
-![Creating new Mock API](https://drive.google.com/file/d/1bIsfYgl9kQlLznjAf7nME6w4Die0KwEv/view?usp=sharing)
+   <img width="1439" alt="image" src="https://user-images.githubusercontent.com/30066382/81479669-356c2c80-9242-11ea-99ef-df905c927f80.png">
  
  - Editing Mock API
-   ![Editing Mock API](https://drive.google.com/file/d/1iI1ZG-VkkppsuWZJA26f4GVJcUXR9Fo7/view?usp=sharing)
+   <img width="1440" alt="image" src="https://user-images.githubusercontent.com/30066382/81479696-72d0ba00-9242-11ea-8edf-e6b3f41f3564.png">
+
 
 
