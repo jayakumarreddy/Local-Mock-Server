@@ -1,14 +1,13 @@
-const electron = require("electron");
+const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
+const { autoUpdater } = require("electron-updater");
+
 const { expressApp } = require("./express");
 
-const app = electron.app;
 const desktopPath = app.getPath("desktop");
 
 expressApp(desktopPath);
-
-const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
@@ -29,6 +28,10 @@ function createWindow() {
   isDev && mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => (mainWindow = null));
+
+  mainWindow.once("ready-to-show", () => {
+    autoUpdater.checkForUpdates();
+  });
 }
 
 app.on("ready", createWindow);
@@ -43,4 +46,10 @@ app.on("activate", () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+autoUpdater.on("update-available", info => {});
+
+autoUpdater.on("update-downloaded", () => {
+  autoUpdater.quitAndInstall();
 });

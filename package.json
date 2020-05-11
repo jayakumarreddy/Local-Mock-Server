@@ -10,7 +10,10 @@
     "mac": {
       "category": "public.app-category.utilities",
       "icon": "public/AppIcon.png"
-    }
+    },
+    "publish": [
+      "github"
+    ]
   },
   "main": "public/electron.js",
   "homepage": "./",
@@ -22,6 +25,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "electron-is-dev": "^1.1.0",
+    "electron-updater": "^4.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
@@ -40,6 +44,7 @@
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=never",
+    "publish": "yarn react-build && electron-builder --publish=always",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
