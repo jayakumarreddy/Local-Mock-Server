@@ -5,17 +5,28 @@
 }
 
 .left-wrapper {
-  flex-basis: 40%;
+  flex-basis: 35%;
   height: 100%;
 }
 
 .left-wrapper-inner {
-  padding: 20px 10px 20px 20px;
+  padding: 0px 0px 10px 10px;
+  height: 100%;
+}
+
+.right-wrapper {
+  flex-basis: 75%;
+}
+
+.right-wrapper-inner {
+  height: 100%;
+  padding: 20px 20px 10px 20px;
 }
 
 .header-title {
   display: flex;
   align-items: center;
+  height: 10%;
 }
 
 .header-title img {
@@ -23,8 +34,9 @@
 }
 
 .left-wrapper-mocks {
-  margin-top: 20px;
   color: white;
+  height: 83%;
+  overflow: auto;
 }
 
 .left-wrapper-mock {
@@ -42,6 +54,10 @@
   height: 12px;
   width: 9px;
   margin-left: 10px;
+}
+
+.left-wrapper-mock img:active {
+  transform: scale(0.9);
 }
 
 .left-wrapper-no-mock {
@@ -70,16 +86,7 @@
   color: #e95065 !important;
 }
 
-.right-wrapper {
-  width: 100%;
-}
-
-.right-wrapper-inner {
-  max-height: 100%;
-  padding: 20px 20px 10px 20px;
-}
-
 .left-wrapper-button button {
-  margin-top: 30px;
+  margin-top: 10px;
   width: 100%;
 }

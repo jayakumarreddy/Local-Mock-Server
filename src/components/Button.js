@@ -9,9 +9,13 @@ const Button = styled.button`
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-
+  outline: none;
   height: ${props => (props.height ? props.height : "40px")};
   width: ${props => (props.width ? props.width : "150px")};
+
+  &:active {
+    transform: scale(0.9);
+  }
 `;
 
 export default Button;

@@ -12,7 +12,9 @@ const ReqForm = ({
   reqMethodProp,
   reqPathProp,
   resStatusProp,
-  resBodyProp
+  resBodyProp,
+  createMockState,
+  setCreateMockState
 }) => {
   const [reqMethod, setReqMethod] = useState(reqMethodProp ?? "");
   const [reqPath, setReqPath] = useState(reqPathProp ?? "");
@@ -33,6 +35,11 @@ const ReqForm = ({
         setFormError("");
       } catch (err) {
         setFormError("* Response Body JSON format not valid");
+        setCreateMockState({
+          successMessage: "",
+          errorMessage: "",
+          isLoading: false
+        });
       }
     } else {
       setFormError("* All Fields are mandatory");
@@ -47,32 +54,35 @@ const ReqForm = ({
   }, [reqMethodProp, reqPathProp, resStatusProp, resBodyProp]);
 
   return (
-    <Sheet>
+    <Sheet className="right-wrapper-sheet">
       <div className="sheet-inner">
-        <Label fontSize={"24px"} color={"white"}>
-          Request :
-          <span className="sheet-inner-info">
-            (To acces mock server hit port 8000 Ex: http://localhost:8080/users)
-          </span>
-        </Label>
-        <div className="sheet-request">
-          <div>
-            <TextBox
-              placeholder="Method"
-              onChange={e => {
-                setReqMethod(e.target.value);
-              }}
-              value={reqMethod}
-            ></TextBox>
-          </div>
-          <div>
-            <TextBox
-              placeholder="Path (starting from / for ex: /users)"
-              onChange={e => {
-                setReqPath(e.target.value);
-              }}
-              value={reqPath}
-            ></TextBox>
+        <div className="sheet-req-wrapper">
+          <Label fontSize={"24px"} color={"white"}>
+            Request :
+            <span className="sheet-inner-info">
+              (To acces mock server hit port 8000 Ex:
+              http://localhost:8080/users)
+            </span>
+          </Label>
+          <div className="sheet-request">
+            <div>
+              <TextBox
+                placeholder="Method"
+                onChange={e => {
+                  setReqMethod(e.target.value);
+                }}
+                value={reqMethod}
+              ></TextBox>
+            </div>
+            <div>
+              <TextBox
+                placeholder="Path (starting from / for ex: /users)"
+                onChange={e => {
+                  setReqPath(e.target.value);
+                }}
+                value={reqPath}
+              ></TextBox>
+            </div>
           </div>
         </div>
         <div className="sheet-response-code">
@@ -92,7 +102,7 @@ const ReqForm = ({
             Response Body :
           </Label>
           <TextArea
-            rows={25}
+            // rows={25}
             placeholder="Paste the response JSON Body here"
             onChange={e => {
               setResBody(e.target.value);
@@ -100,9 +110,21 @@ const ReqForm = ({
             value={resBody}
           ></TextArea>
         </div>
-        {formError && <div className="sheet-error">{formError}</div>}
         <div className="sheet-button">
-          <Button onClick={onButtonClick}>CREATE/UPDATE</Button>
+          <div className="sheet-error">
+            {formError && <span>{formError}</span>}
+            {createMockState.successMessage && (
+              <span className="sheet-success">
+                {createMockState.successMessage}
+              </span>
+            )}
+            {createMockState.errorMessage && (
+              <span>{createMockState.errorMessage}</span>
+            )}
+          </div>
+          <Button onClick={onButtonClick}>{`CREATE/UPDATE${
+            createMockState.isLoading ? "...." : ""
+          }`}</Button>
         </div>
       </div>
     </Sheet>

@@ -6,7 +6,7 @@ import "./App.css";
 
 const AppMain = styled.div`
   background-color: #292929;
-  min-height: 100vh;
+  height: 100vh;
 `;
 
 function App() {

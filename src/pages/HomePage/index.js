@@ -17,6 +17,11 @@ const HomePage = () => {
     resStatus: "",
     resBody: ""
   });
+  const [createMockState, setCreateMockState] = useState({
+    successMessage: "",
+    errorMessage: "",
+    isLoading: false
+  });
 
   const fetchMocks = async () => {
     let response = await fetch("http://localhost:8000/allmocks", {
@@ -34,8 +39,12 @@ const HomePage = () => {
   }, []);
 
   const onsubmit = async ({ reqMethod, reqPath, resStatus, resBody }) => {
-    console.log("form submitted", reqMethod, reqPath, resStatus, resBody);
-    await fetch("http://localhost:8000/createmock", {
+    setCreateMockState({
+      successMessage: "",
+      errorMessage: "",
+      isLoading: true
+    });
+    const response = await fetch("http://localhost:8000/createmock", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -47,11 +56,28 @@ const HomePage = () => {
         resBody: JSON.parse(resBody)
       })
     });
+    if (response.ok) {
+      setCreateMockState({
+        successMessage: "Create/Update Mock is success",
+        errorMessage: "",
+        isLoading: false
+      });
+    } else {
+      setCreateMockState({
+        successMessage: "",
+        errorMessage: "Something went Wrong!!",
+        isLoading: false
+      });
+    }
     fetchMocks();
   };
 
   const onMockClick = async mock => {
-    console.log("mock clicked", mock);
+    setCreateMockState({
+      successMessage: "",
+      errorMessage: "",
+      isLoading: false
+    });
     let response = await fetch(`http://localhost:8000/${mock.reqPath}`, {
       method: `${mock.reqMethod}`,
       headers: {
@@ -141,6 +167,8 @@ const HomePage = () => {
             reqPathProp={mock.reqPath}
             resStatusProp={mock.resStatus}
             resBodyProp={mock.resBody}
+            createMockState={createMockState}
+            setCreateMockState={setCreateMockState}
           ></ReqForm>
         </div>
       </div>

@@ -1,12 +1,20 @@
+.right-wrapper-sheet {
+  height: 100%;
+}
+
 .sheet-inner {
-  padding: 20px;
+  padding: 15px 10px 10px 15px;
+  height: 100%;
+}
+
+.sheet-req-wrapper {
+  height: 15%;
 }
 
 .sheet-request {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .sheet-inner-info {
@@ -25,6 +33,7 @@
 }
 
 .sheet-response-code {
+  height: 7%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -36,11 +45,12 @@
 }
 
 .sheet-response-body {
-  height: 50%;
+  height: 70%;
 }
 
 .sheet-response-body textarea {
   margin-top: 10px;
+  height: 90%;
 }
 
 .sheet-error {
@@ -49,8 +59,13 @@
   font-weight: 500;
 }
 
+.sheet-success {
+  color: yellowgreen;
+}
+
 .sheet-button {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  justify-content: space-between;
+  height: 8%;
+  align-items: center;
 }
