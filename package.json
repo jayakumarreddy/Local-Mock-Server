@@ -1,7 +1,7 @@
 {
   "name": "local-mock-server",
   "description": "Local Mock Server is a simple tool for creating mock server locally. With this you can create number of mock api's by configuring request method, request path, response status and JSON response body",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Jaya Kumar Reddy Regalla",
   "license": "MIT",
   "build": {
