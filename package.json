@@ -50,6 +50,7 @@
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=never",
     "publish": "yarn react-build && electron-builder --publish=always",
+    "publish-all": "yarn react-build && electron-builder -mwl --publish=always",
     "build": "yarn react-build && yarn electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
