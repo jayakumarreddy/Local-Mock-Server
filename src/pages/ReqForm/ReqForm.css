@@ -46,11 +46,82 @@
 
 .sheet-response-body {
   height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.response-body-wrapper {
+  height: 92%;
+}
+
+.response-body {
+  height: 92%;
+  position: relative;
+}
+
+.response-boy-full-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 1s ease;
+}
+
+.go-full-screen-button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: red;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.response-body-tabs {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1px;
+  background: #4f4f4f;
+  width: 35%;
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 2px 5px;
+}
+
+.response-body-tabs > span {
+  padding: 6px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.response-body-tabs > span.active {
+  background-color: #03dac5;
+  color: black;
+  transition: all 0.5s;
 }
 
 .sheet-response-body textarea {
-  margin-top: 10px;
-  height: 90%;
+  height: 100%;
+}
+
+.sheet-response-body .tree-view-wrapper {
+  height: 100%;
+  overflow: auto;
+}
+
+.sheet-response-body .response-boy-full-screen .tree-view-wrapper,
+.sheet-response-body .response-boy-full-screen textarea {
+  height: 100%;
+}
+
+.tree-view-wrapper {
+  background-color: #4f4f4f;
+  padding: 2px 2px;
 }
 
 .sheet-error {

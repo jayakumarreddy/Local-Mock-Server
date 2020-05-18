@@ -15,7 +15,7 @@ const HomePage = () => {
     reqMethod: "",
     reqPath: "",
     resStatus: "",
-    resBody: ""
+    resBody: JSON.stringify({})
   });
   const [createMockState, setCreateMockState] = useState({
     successMessage: "",
@@ -53,7 +53,7 @@ const HomePage = () => {
         reqMethod,
         reqPath,
         resStatus,
-        resBody: JSON.parse(resBody)
+        resBody: JSON.parse(JSON.stringify(JSON.parse(resBody), null, 2))
       })
     });
     if (response.ok) {
@@ -112,7 +112,12 @@ const HomePage = () => {
   };
 
   const onButtonClick = () => {
-    setMock({ reqMethod: "", reqPath: "", resStatus: "", resBody: "" });
+    setMock({
+      reqMethod: "",
+      reqPath: "",
+      resStatus: "",
+      resBody: JSON.stringify({})
+    });
   };
 
   return (

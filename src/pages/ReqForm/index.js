@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+import JSONViewer from "react-json-view";
+
 import Sheet from "../../components/Sheet";
 import Label from "../../components/Label";
 import TextBox from "../../components/TextBox";
 import TextArea from "../../components/TextArea";
 import Button from "../../components/Button";
+import ExpandIcon from "../../images/Expand.png";
+import MinimizeIcon from "../../images/Minimize.png";
 
 import "./ReqForm.css";
 
@@ -19,18 +23,19 @@ const ReqForm = ({
   const [reqMethod, setReqMethod] = useState(reqMethodProp ?? "");
   const [reqPath, setReqPath] = useState(reqPathProp ?? "");
   const [resStatus, setResStatus] = useState(resStatusProp ?? "");
-  const [resBody, setResBody] = useState(resBodyProp ?? "");
+  const [resBody, setResBody] = useState(resBodyProp ?? JSON.stringify({}));
   const [formError, setFormError] = useState("");
+  const [activeTab, setActiveTab] = useState("textview");
+  const [goFullScreen, setGoFullScreen] = useState(false);
 
   const onButtonClick = () => {
     if (reqMethod && reqPath && resStatus && resBody) {
       try {
-        const JSONResBody = JSON.stringify(JSON.parse(resBody), null, 2);
         onsubmit({
           reqMethod,
           reqPath,
           resStatus,
-          resBody: JSONResBody
+          resBody
         });
         setFormError("");
       } catch (err) {
@@ -52,6 +57,8 @@ const ReqForm = ({
     setResStatus(resStatusProp);
     setResBody(resBodyProp);
   }, [reqMethodProp, reqPathProp, resStatusProp, resBodyProp]);
+
+  console.log("response body is", resBody);
 
   return (
     <Sheet className="right-wrapper-sheet">
@@ -101,14 +108,54 @@ const ReqForm = ({
           <Label fontSize={"24px"} color={"white"}>
             Response Body :
           </Label>
-          <TextArea
-            // rows={25}
-            placeholder="Paste the response JSON Body here"
-            onChange={e => {
-              setResBody(e.target.value);
-            }}
-            value={resBody}
-          ></TextArea>
+          <div className="response-body-wrapper">
+            <div className="response-body-tabs">
+              <span
+                className={`${activeTab === "textview" ? "active" : ""}`}
+                onClick={() => setActiveTab("textview")}
+              >
+                Text View
+              </span>
+              <span
+                className={`${activeTab === "treeview" ? "active" : ""}`}
+                onClick={() => setActiveTab("treeview")}
+              >
+                Tree View
+              </span>
+            </div>
+            <div
+              className={`response-body ${
+                goFullScreen ? "response-boy-full-screen" : ""
+              }`}
+            >
+              <img
+                className="go-full-screen-button"
+                src={goFullScreen ? MinimizeIcon : ExpandIcon}
+                alt="+"
+                onClick={() => setGoFullScreen(!goFullScreen)}
+              />
+              {activeTab === "textview" ? (
+                <TextArea
+                  placeholder="Paste the response JSON Body here"
+                  onChange={e => {
+                    setResBody(e.target.value);
+                  }}
+                  value={resBody}
+                ></TextArea>
+              ) : (
+                <div className="tree-view-wrapper">
+                  <JSONViewer
+                    src={JSON.parse(resBody)}
+                    theme="ocean"
+                    displayDataTypes={false}
+                    // enableClipboard={false}
+                    displayObjectSize={false}
+                    collapsed={1}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="sheet-button">
           <div className="sheet-error">

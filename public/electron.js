@@ -13,8 +13,6 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
     webPreferences: {
       nodeIntegration: true
     },
@@ -25,6 +23,7 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
+  mainWindow.maximize();
   isDev && mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => (mainWindow = null));
