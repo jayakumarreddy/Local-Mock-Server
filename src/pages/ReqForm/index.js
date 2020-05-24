@@ -63,7 +63,11 @@ const ReqForm = ({
       <div className="sheet-inner">
         <div className="sheet-req-wrapper">
           <Label fontSize={"24px"} color={"white"}>
-            Request :<span className="sheet-inner-info"></span>
+            Request :
+            <span className="sheet-inner-info">
+              (To acces mock server hit port 8000 Ex:
+              http://localhost:8000/users)
+            </span>
           </Label>
           <div className="sheet-request">
             <div>
