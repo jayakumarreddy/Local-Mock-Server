@@ -5,18 +5,18 @@ const { autoUpdater } = require("electron-updater");
 
 const { expressApp } = require("./express");
 
-const desktopPath = app.getPath("desktop");
+const mockFilesStoragePath = app.getPath("userData");
 
-expressApp(desktopPath);
+expressApp(mockFilesStoragePath);
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
     },
-    icon: path.join(__dirname, "/public/mockAppIcon.png")
+    icon: path.join(__dirname, "/public/mockAppIcon.png"),
   });
   mainWindow.loadURL(
     isDev
@@ -27,10 +27,6 @@ function createWindow() {
   isDev && mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", () => (mainWindow = null));
-
-  mainWindow.once("ready-to-show", () => {
-    autoUpdater.checkForUpdates();
-  });
 }
 
 app.on("ready", createWindow);
@@ -47,8 +43,6 @@ app.on("activate", () => {
   }
 });
 
-autoUpdater.on("update-available", info => {});
-
-autoUpdater.on("update-downloaded", () => {
-  autoUpdater.quitAndInstall();
+app.on("ready", function () {
+  autoUpdater.checkForUpdatesAndNotify();
 });

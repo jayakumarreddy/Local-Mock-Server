@@ -18,7 +18,7 @@ const ReqForm = ({
   resStatusProp,
   resBodyProp,
   createMockState,
-  setCreateMockState
+  setCreateMockState,
 }) => {
   const [reqMethod, setReqMethod] = useState(reqMethodProp ?? "");
   const [reqPath, setReqPath] = useState(reqPathProp ?? "");
@@ -35,7 +35,7 @@ const ReqForm = ({
           reqMethod,
           reqPath,
           resStatus,
-          resBody
+          resBody,
         });
         setFormError("");
       } catch (err) {
@@ -43,7 +43,7 @@ const ReqForm = ({
         setCreateMockState({
           successMessage: "",
           errorMessage: "",
-          isLoading: false
+          isLoading: false,
         });
       }
     } else {
@@ -58,8 +58,6 @@ const ReqForm = ({
     setResBody(resBodyProp);
   }, [reqMethodProp, reqPathProp, resStatusProp, resBodyProp]);
 
-  console.log("response body is", resBody);
-
   return (
     <Sheet className="right-wrapper-sheet">
       <div className="sheet-inner">
@@ -68,14 +66,14 @@ const ReqForm = ({
             Request :
             <span className="sheet-inner-info">
               (To acces mock server hit port 8000 Ex:
-              http://localhost:8080/users)
+              http://localhost:8000/users)
             </span>
           </Label>
           <div className="sheet-request">
             <div>
               <TextBox
                 placeholder="Method"
-                onChange={e => {
+                onChange={(e) => {
                   setReqMethod(e.target.value);
                 }}
                 value={reqMethod}
@@ -84,7 +82,7 @@ const ReqForm = ({
             <div>
               <TextBox
                 placeholder="Path (starting from / for ex: /users)"
-                onChange={e => {
+                onChange={(e) => {
                   setReqPath(e.target.value);
                 }}
                 value={reqPath}
@@ -98,7 +96,7 @@ const ReqForm = ({
           </Label>
           <TextBox
             placeholder="code"
-            onChange={e => {
+            onChange={(e) => {
               setResStatus(e.target.value);
             }}
             value={resStatus}
@@ -132,12 +130,13 @@ const ReqForm = ({
                 className="go-full-screen-button"
                 src={goFullScreen ? MinimizeIcon : ExpandIcon}
                 alt="+"
+                title={goFullScreen ? "Minimize" : "Maximize"}
                 onClick={() => setGoFullScreen(!goFullScreen)}
               />
               {activeTab === "textview" ? (
                 <TextArea
                   placeholder="Paste the response JSON Body here"
-                  onChange={e => {
+                  onChange={(e) => {
                     setResBody(e.target.value);
                   }}
                   value={resBody}
