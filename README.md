@@ -15,6 +15,9 @@ Uses
  
  - Editing Mock API
    <img width="1440" alt="image" src="https://user-images.githubusercontent.com/30066382/81479696-72d0ba00-9242-11ea-8edf-e6b3f41f3564.png">
+  
+ - JSON Viewer
+   <img width="1433" alt="image" src="https://user-images.githubusercontent.com/30066382/82857582-08509700-9f2f-11ea-8c04-5ab71e32e510.png">
 
 
 
