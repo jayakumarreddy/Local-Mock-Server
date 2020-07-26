@@ -6,6 +6,7 @@ import Label from "../../components/Label";
 import TextBox from "../../components/TextBox";
 import TextArea from "../../components/TextArea";
 import Button from "../../components/Button";
+import { isStringifiedJSON } from "../../helpers";
 import ExpandIcon from "../../images/Expand.png";
 import MinimizeIcon from "../../images/Minimize.png";
 
@@ -18,7 +19,7 @@ const ReqForm = ({
   resStatusProp,
   resBodyProp,
   createMockState,
-  setCreateMockState,
+  setCreateMockState
 }) => {
   const [reqMethod, setReqMethod] = useState(reqMethodProp ?? "");
   const [reqPath, setReqPath] = useState(reqPathProp ?? "");
@@ -27,6 +28,7 @@ const ReqForm = ({
   const [formError, setFormError] = useState("");
   const [activeTab, setActiveTab] = useState("textview");
   const [goFullScreen, setGoFullScreen] = useState(false);
+  const isObject = isStringifiedJSON(resBody);
 
   const onButtonClick = () => {
     if (reqMethod && reqPath && resStatus && resBody) {
@@ -35,7 +37,7 @@ const ReqForm = ({
           reqMethod,
           reqPath,
           resStatus,
-          resBody,
+          resBody
         });
         setFormError("");
       } catch (err) {
@@ -43,7 +45,7 @@ const ReqForm = ({
         setCreateMockState({
           successMessage: "",
           errorMessage: "",
-          isLoading: false,
+          isLoading: false
         });
       }
     } else {
@@ -73,7 +75,7 @@ const ReqForm = ({
             <div>
               <TextBox
                 placeholder="Method"
-                onChange={(e) => {
+                onChange={e => {
                   setReqMethod(e.target.value);
                 }}
                 value={reqMethod}
@@ -82,7 +84,7 @@ const ReqForm = ({
             <div>
               <TextBox
                 placeholder="Path (starting from / for ex: /users)"
-                onChange={(e) => {
+                onChange={e => {
                   setReqPath(e.target.value);
                 }}
                 value={reqPath}
@@ -96,7 +98,7 @@ const ReqForm = ({
           </Label>
           <TextBox
             placeholder="code"
-            onChange={(e) => {
+            onChange={e => {
               setResStatus(e.target.value);
             }}
             value={resStatus}
@@ -114,12 +116,14 @@ const ReqForm = ({
               >
                 Text View
               </span>
-              <span
-                className={`${activeTab === "treeview" ? "active" : ""}`}
-                onClick={() => setActiveTab("treeview")}
-              >
-                Tree View
-              </span>
+              {isObject && (
+                <span
+                  className={`${activeTab === "treeview" ? "active" : ""}`}
+                  onClick={() => setActiveTab("treeview")}
+                >
+                  Tree View
+                </span>
+              )}
             </div>
             <div
               className={`response-body ${
@@ -136,7 +140,7 @@ const ReqForm = ({
               {activeTab === "textview" ? (
                 <TextArea
                   placeholder="Paste the response JSON Body here"
-                  onChange={(e) => {
+                  onChange={e => {
                     setResBody(e.target.value);
                   }}
                   value={resBody}
