@@ -10,14 +10,16 @@ import ReqForm from "../ReqForm";
 
 import "./HomePage.css";
 
+const defaultMockData = {
+  reqMethod: "",
+  reqPath: "",
+  resStatus: "",
+  resBody: JSON.stringify({})
+};
+
 const HomePage = () => {
   const [mocks, setMocks] = useState([]);
-  const [mock, setMock] = useState({
-    reqMethod: "",
-    reqPath: "",
-    resStatus: "",
-    resBody: JSON.stringify({}),
-  });
+  const [mock, setMock] = useState(defaultMockData);
   const [createMockState, setCreateMockState] = useState({
     successMessage: "",
     errorMessage: "",
@@ -58,11 +60,12 @@ const HomePage = () => {
       }),
     });
     if (response.ok) {
-      setCreateMockState({
+      setCreateMockState(() => ({
         successMessage: "Create/Update Mock is success",
         errorMessage: "",
-        isLoading: false,
-      });
+        isLoading: false
+      }));
+      setMock(() => defaultMockData);
     } else {
       setCreateMockState({
         successMessage: "",
@@ -112,12 +115,7 @@ const HomePage = () => {
   };
 
   const onButtonClick = () => {
-    setMock({
-      reqMethod: "",
-      reqPath: "",
-      resStatus: "",
-      resBody: JSON.stringify({}),
-    });
+    setMock(defaultMockData);
   };
 
   return (
